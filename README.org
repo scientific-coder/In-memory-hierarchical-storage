@@ -1,0 +1,45 @@
+* Spec
+in memory hierarchical named storage for heterogeneous data types.
+
+** hierarchical
+cf. directories or namespaces
+
+** named
+unicode
+
+** heterogenous data types
+
+i.e. int, float, std::string
+
+* Implementation
+
+** heterogenous data types
+boost::variant<>
+http://www.boost.org/doc/libs/1_47_0/doc/html/variant/tutorial.html#variant.tutorial.recursive.recursive-variant
+typedef boost::make_recursive_variant<
+      int
+    , float
+    , std::string
+    , std::unordered_map< fw_string, boost::recursive_variant_ >
+    >::type storage_type;
+
+
+** named
+
+could use boost::flyweight<std::string> of (normalized?) utf-8
+could add char const* 
+
+** hierarchical
+
+*** std::unordered_map
+
++ std
+
+*** memory b-tree
++ perf
+
+https://github.com/Beman/memory-btree
+
+*** vop::
++ COW
+- not implemented yet :D
